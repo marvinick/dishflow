@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SectionHero matches snapshot 1`] = `
+<div
+  className=""
+>
+  <h1>
+    <span>
+      SectionHero.title
+    </span>
+  </h1>
+  <h2>
+    <span>
+      SectionHero.subTitle
+    </span>
+  </h2>
+  <button
+    className=""
+    disabled={false}
+    onClick={[Function]}
+  >
+    <svg
+      className=""
+      height="22"
+      viewBox="0 0 21 22"
+      width="21"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        fill="none"
+        fillRule="evenodd"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        transform="matrix(-1 0 0 1 20 1)"
+      >
+        <path
+          d="M13 14l5.241 5.241"
+        />
+        <circle
+          cx="7.5"
+          cy="7.5"
+          r="7.5"
+        />
+      </g>
+    </svg>
+    <span>
+      SectionHero.mobileSearchButtonText
+    </span>
+  </button>
+  <form
+    action="/"
+    className=""
+    method="post"
+    onSubmit={[Function]}
+  >
+    <div
+      className=""
+    >
+      <div
+        className=""
+      >
+        <svg
+          height="22"
+          viewBox="0 0 21 22"
+          width="21"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            fill="none"
+            fillRule="evenodd"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            transform="matrix(-1 0 0 1 20 1)"
+          >
+            <path
+              d="M13 14l5.241 5.241"
+            />
+            <circle
+              cx="7.5"
+              cy="7.5"
+              r="7.5"
+            />
+          </g>
+        </svg>
+      </div>
+      <input
+        autoComplete="off"
+        autoFocus={false}
+        className=""
+        name="location"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        placeholder="LocationSearchForm.placeholder"
+        type="search"
+        value=""
+      />
+    </div>
+  </form>
+</div>
+`;
