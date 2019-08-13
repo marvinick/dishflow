@@ -61,33 +61,10 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadTodoItems()
         // Do any additional setup after loading the view.
-        navigationController?.navigationBar.prefersLargeTitles = true
-//        
-//        // Add the following lines
-//        let item1 = TodoItem()
-//        item1.text = "Walk the dog"
-//        items.append(item1)
-//        
-//        let item2 = TodoItem()
-//        item2.text = "Walk the dog 2"
-//        items.append(item2)
-//        
-//        let item3 = TodoItem()
-//        item3.text = "Walk the dog 3"
-//        items.append(item3)
-//        
-//        let item4 = TodoItem()
-//        item4.text = "Walk the dog 4"
-//        items.append(item4)
-//        
-//        let item5 = TodoItem()
-//        item5.text = "Walk the dog 5"
-//        items.append(item5)
-//        
-//        print("Documents folder is \(documentsDirectory())")
-//        print("Data file path is \(dataFilePath())")
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     //MARK:- Table View Data Source
