@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TodoItem: NSObject {
+class TodoItem: NSObject, Codable {
     var text = ""
     var checked = false
     

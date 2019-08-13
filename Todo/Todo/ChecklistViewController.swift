@@ -24,6 +24,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
+        
+        saveTodoItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: TodoItem) {
@@ -34,7 +36,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             }
         }
         navigationController?.popViewController(animated: true)
-        
+        saveTodoItems()
     }
     
     
@@ -59,29 +61,33 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadTodoItems()
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        // Add the following lines
-        let item1 = TodoItem()
-        item1.text = "Walk the dog"
-        items.append(item1)
-        
-        let item2 = TodoItem()
-        item2.text = "Walk the dog 2"
-        items.append(item2)
-        
-        let item3 = TodoItem()
-        item3.text = "Walk the dog 3"
-        items.append(item3)
-        
-        let item4 = TodoItem()
-        item4.text = "Walk the dog 4"
-        items.append(item4)
-        
-        let item5 = TodoItem()
-        item5.text = "Walk the dog 5"
-        items.append(item5)
+//        
+//        // Add the following lines
+//        let item1 = TodoItem()
+//        item1.text = "Walk the dog"
+//        items.append(item1)
+//        
+//        let item2 = TodoItem()
+//        item2.text = "Walk the dog 2"
+//        items.append(item2)
+//        
+//        let item3 = TodoItem()
+//        item3.text = "Walk the dog 3"
+//        items.append(item3)
+//        
+//        let item4 = TodoItem()
+//        item4.text = "Walk the dog 4"
+//        items.append(item4)
+//        
+//        let item5 = TodoItem()
+//        item5.text = "Walk the dog 5"
+//        items.append(item5)
+//        
+//        print("Documents folder is \(documentsDirectory())")
+//        print("Data file path is \(dataFilePath())")
     }
     
     //MARK:- Table View Data Source
@@ -111,6 +117,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
             
         }
         tableView.deselectRow(at: indexPath, animated: true)
+        saveTodoItems()
     }
     
     func configureCheckMark(for cell: UITableViewCell, with item: TodoItem) {
@@ -131,7 +138,41 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveTodoItems()
     }
+    
+    //MARK:- saving data
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+    
+    func saveTodoItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadTodoItems() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                items = try decoder.decode([TodoItem].self, from: data)
+            } catch {
+                print("Error decoding item array: \(error.localizedDescription)")
+            }
+        }
+    }
+    
 
 }
 
