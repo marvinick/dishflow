@@ -10,6 +10,8 @@ import UIKit
 
 class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
     
+    var checklist: Checklist!
+    
     //MARK:- Add item viewcontroller delegates
     func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         navigationController?.popViewController(animated: true)
@@ -65,6 +67,8 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         loadTodoItems()
         // Do any additional setup after loading the view.
         navigationItem.largeTitleDisplayMode = .never
+        
+        title = checklist.name
     }
     
     //MARK:- Table View Data Source
