@@ -19,18 +19,6 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-//        var list = Checklist(name: "Birthdays")
-//        dataModel.lists.append(list)
-//        
-//        list = Checklist(name: "Birthdays 2")
-//        dataModel.lists.append(list)
-//        
-//        list = Checklist(name: "Birthdays 3")
-//        dataModel.lists.append(list)
-//        
-//        list = Checklist(name: "Birthdays 4")
-//        dataModel.lists.append(list)
-        
         for list in dataModel.lists {
             let item = TodoItem()
             item.text = "Item for \(list.name)"
@@ -134,7 +122,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         navigationController?.delegate = self
         let index = dataModel.indexOfSelectedChecklist
         
-        if index != -1 {
+        if index >= 0 && index < dataModel.lists.count {
             let checklist = dataModel.lists[index]
             performSegue(withIdentifier: "ShowChecklist", sender: checklist)
         }
