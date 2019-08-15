@@ -21,7 +21,7 @@ class DataModel {
         return documentsDirectory().appendingPathComponent("Checklists.plist")
     }
     
-    func saveChecklists() {
+    func saveChecklist() {
         let encoder = PropertyListEncoder()
         do {
             let data = try encoder.encode(lists)

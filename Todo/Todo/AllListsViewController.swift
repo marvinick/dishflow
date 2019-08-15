@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
     
     let cellIdentifier = "ChecklistCell"
     var dataModel: DataModel!
@@ -19,17 +19,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         
         navigationController?.navigationBar.prefersLargeTitles = true
         
-        var list = Checklist(name: "Birthdays")
-        dataModel.lists.append(list)
-        
-        list = Checklist(name: "Birthdays 2")
-        dataModel.lists.append(list)
-        
-        list = Checklist(name: "Birthdays 3")
-        dataModel.lists.append(list)
-        
-        list = Checklist(name: "Birthdays 4")
-        dataModel.lists.append(list)
+//        var list = Checklist(name: "Birthdays")
+//        dataModel.lists.append(list)
+//        
+//        list = Checklist(name: "Birthdays 2")
+//        dataModel.lists.append(list)
+//        
+//        list = Checklist(name: "Birthdays 3")
+//        dataModel.lists.append(list)
+//        
+//        list = Checklist(name: "Birthdays 4")
+//        dataModel.lists.append(list)
         
         for list in dataModel.lists {
             let item = TodoItem()
@@ -39,6 +39,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         
         print("Documents folder is \(dataModel.documentsDirectory())")
         print("Data file path is \(dataModel.dataFilePath())")
+        
     }
 
     // MARK: - Table view data source
@@ -59,6 +60,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        
+        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
     }
     
     //MARK:- Navigation
@@ -115,6 +118,25 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    //MARK:- Navigation Controller Delegates
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        //was the back button tapped
+        if viewController === self {
+            UserDefaults.standard.set(-1, forKey: "ChecklistIndex")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = self
+        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        
+        if index != -1 {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: "ShowChecklist", sender: checklist)
+        }
+    }
     
 
 }
