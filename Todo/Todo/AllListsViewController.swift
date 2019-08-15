@@ -58,10 +58,12 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dataModel.indexOfSelectedChecklist = indexPath.row
         let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
         
         UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
+        
     }
     
     //MARK:- Navigation
@@ -122,7 +124,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         //was the back button tapped
         if viewController === self {
-            UserDefaults.standard.set(-1, forKey: "ChecklistIndex")
+            dataModel.indexOfSelectedChecklist = -1
         }
     }
     
@@ -130,7 +132,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         super.viewDidAppear(animated)
         
         navigationController?.delegate = self
-        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        let index = dataModel.indexOfSelectedChecklist
         
         if index != -1 {
             let checklist = dataModel.lists[index]
