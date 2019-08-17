@@ -20,6 +20,7 @@ protocol  ListDetailViewControllerDelegate: class {
 class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
+    @IBOutlet weak var iconImage: UIImageView!
     
     weak var delegate: ListDetailViewControllerDelegate?
     
@@ -57,7 +58,7 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     
     //MARK:- Table view delegates
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        return nil
+        return indexPath.section == 1 ? indexPath : nil
     }
     
     //MARK:- Text field delegates
