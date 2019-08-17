@@ -292,6 +292,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Cov-OL-w9J">
                                                     <rect key="frame" x="306" y="6.0000000000000018" width="51" height="31.666666666666671"/>
+                                                    <connections>
+                                                        <action selector="shouldRemindToggled:" destination="kTj-K7-E08" eventType="valueChanged" id="ELs-T0-Bco"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Remind Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEi-zr-1Nu">
                                                     <rect key="frame" x="16" y="11" width="86" height="21"/>
@@ -375,6 +378,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="587759767.51584303">
                                     <!--2019-08-17 18:36:07 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="dateChanged:" destination="kTj-K7-E08" eventType="valueChanged" id="nPq-fo-YND"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <constraints>
