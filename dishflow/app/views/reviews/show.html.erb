@@ -1,0 +1,14 @@
+<p>
+  <%= @review.public %>
+</p>
+
+<p>
+  <%= @review.private %>
+</p>
+
+<p>
+  <%= @review.properties %>
+</p>
+
+<%= link_to 'Edit', edit_menu_food_review_path(@menu, @food, @review) %> |
+<%= link_to 'Back', menu_food_reviews_path %>

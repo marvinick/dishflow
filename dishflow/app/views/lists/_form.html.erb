@@ -1,0 +1,31 @@
+<%= content_tag :div,
+    id: "list-form",
+    data: {
+      id: list.id,
+      list: list.to_json(except: [:id, :created_at, :updated_at]),
+      foods_attributes: list.foods.to_json(except: [:list_id, :created_at, :updated_at]),
+    } do %>
+
+    <h4 class="bold">List Name</h4>
+    <input type="text" v-model="list.name" />
+    <br />
+    <br />
+    <h5 class="bold">Foods</h5>
+    <div v-for="(food, index) in list.foods_attributes">
+      <div v-if="food._destroy == '1' ">
+        {{ food.name }} will be removed. <button v-on:click="undoRemove(index)" class="btn btn-dark">Undo</button>
+      </div>
+      <div v-else>
+        <h6 class="bold">Name</h6>
+        <input type="text" v-model="food.name" />
+
+        <button v-on:click="removeFood(index)" class="btn btn-dark">Remove</button>
+      </div>
+      <br  />
+    </div>
+
+    <button v-on:click="addFood" class="btn btn-dark">Add Food</button>
+    <br />
+    <br />
+    <button v-on:click="saveList" class="btn btn-dark">Save List</button>
+<% end %>

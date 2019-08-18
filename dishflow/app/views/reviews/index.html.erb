@@ -1,0 +1,19 @@
+<%= link_to "#{@food.name}", menu_food_path(@menu, @food) %>
+<h3 class="bold">Reviews</h3>
+<%= link_to 'Start review', new_menu_food_review_path(@menu, @food), class: "btn btn-light" %>
+<br />
+<br />
+<div class="row">
+  <% @reviews.each do |review| %>
+    <div class="col-md-3">
+      <%= link_to menu_food_review_path(@menu, @food, review) do %>
+        <div class="card p-3">
+          <li class="list-unstyled">
+            <%= truncate(review.public, length: 30) %>
+          </li>
+
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+<h3 class="bold"><%= link_to @review %> </h3>
+
+<%= render 'form', review: @review %>
+
+<%= link_to 'Back', menu_food_review_path(@menu, @food, @review) %>

@@ -1,0 +1,7 @@
+<div class="col-md-12">
+  <h1 class="text-center bold"><%= link_to @menu.name, menu_path(@menu) %></h1>
+  <!-- <wired-button><%= link_to 'New', new_menu_list_path(@menu) %></wired-button> -->
+  <%= tag.div id: :boards, data: { lists: @lists.to_json(include: :foods)} %>
+  <%= link_to "Add a group", new_menu_list_path(@menu, @list), class: "btn btn-dark" %>
+
+</div>

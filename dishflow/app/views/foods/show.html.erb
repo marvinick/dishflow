@@ -1,0 +1,27 @@
+<%= link_to "#{@menu.name}", menu_path(@menu), class: "small-bold" %> - <%= link_to "list", [@menu, @list], class: "small-bold" %>
+<br  />
+
+<%= link_to "edit", edit_menu_food_path(@menu, @food), class: "small-bold" %>
+<%= link_to "delete", menu_food_path, method: :delete, data: { confirm: "Are you sure you want to delete #{@food.name}? "}, class: "small-bold" %>
+<br  />
+<br  />
+<div class="card p-5 text-center">
+  <p>
+    <h5 class="bold"><%= @food.name %></h4>
+    <p>$ <%= @food.price %></p>
+    <%= @food.body %>
+  </p>
+  <br  />
+  <%= link_to "Reviews", menu_food_reviews_path(@menu, @food, @reviews), class: "bold" %>
+  <div class="row">
+    <% @food.reviews.last(5).each do |review| %>
+      <div class="col-md-4">
+        <div class='card p-4'>
+          <%= truncate(review.public, length:100) %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+
+</div>

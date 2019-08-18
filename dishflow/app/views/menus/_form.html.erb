@@ -1,0 +1,61 @@
+<%= content_tag :div,
+    id: "menu-form",
+    data: {
+      id: menu.id,
+      menu: menu.to_json(except: [:id, :created_at, :updated_at]),
+      ratings_attributes: menu.ratings.to_json(except: [:menu_id, :created_at, :updated_at]),
+    } do %>
+
+    <h4 class="bold">Menu Name</h4>
+    <input type="text" v-model="menu.name" />
+    <br />
+    <br />
+    <h5 class="bold">Ratings</h5>
+    <div v-for="(rating, index) in menu.ratings_attributes">
+      <div v-if="rating._destroy == '1' ">
+        {{ rating.name }} will be removed. <button v-on:click="cancelRemove(index)" class="btn btn-dark">Undo</button>
+      </div>
+      <div v-else>
+        <h6 class="bold">Name</h6>
+        <input type="text" v-model="rating.name" />
+
+        <button v-on:click="removeRating(index)" class="btn btn-dark">Remove</button>
+      </div>
+      <br  />
+    </div>
+
+    <button v-on:click="addRating" class="btn btn-dark">Add Rating</button>
+    <br />
+    <br />
+    <button v-on:click="saveMenu" class="btn btn-dark">Save Menu</button>
+<% end %>
+
+
+
+
+<!--
+<%= form_with(model: menu, local: true) do |form| %>
+  <% if menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+        <% menu.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= form.text_field :name, placeholder: "enter name" %>
+    <br />
+    <br />
+    <%= form.rich_text_area :body %>
+  </div>
+  <br />
+  <%= form.button "submit", class: "btn btn-dark" %>
+
+<% end %>
+  -->

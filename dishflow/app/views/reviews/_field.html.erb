@@ -1,0 +1,28 @@
+<div class="field">
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="float-left">
+        <h6 class="font-weight-bold"><%= field.name %></h6>
+        <small><%= field.description %></small>
+
+      </div>
+      <div class="float-right">
+        <div id="star-rating_<%= field.name.squish! %>" class="mx-5"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+
+      $("#star-rating_<%= field.name %>").each(function() {
+        $(this).raty({
+          path: '/assets/',
+          scoreName: 'review[properties[<%= field.name %>]]',
+          score: 'review[properties[<%= field.name %>]]',
+        });
+      });
+      $('#star-rating').raty('reload')
+    
+  </script>
+</div>

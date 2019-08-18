@@ -1,0 +1,2 @@
+class SpecialDish < ApplicationRecord
+end

@@ -1,0 +1,27 @@
+
+<div class="mb-3">
+  <p class="menu-main-header mb-0"><%= @menu.name %></p>
+  <h5><%= @menu.body %></h5>
+  <% @menu.ratings.each do |rating| %>
+    <%= rating.name %>
+  <% end %>
+</div>
+
+<%= link_to "Add Group", new_menu_list_path(@menu, @list), class:"btn btn-dark" %>
+<%= link_to "Preview", menu_lists_path(@menu), class:"btn btn-dark" %>
+
+
+<div class="row mt-5">
+  <% @menu.lists.each do |list| %>
+    <div class="col-md-4">
+      <div class="card p-4">
+        <p class="bold"><%= link_to list.name, menu_list_path(@menu, list) %></p>
+      </div>
+      <br  />
+    </div>
+
+  <% end %>
+</div>
+<hr  />
+<%= link_to 'Edit', edit_menu_path(@menu), class:"btn btn-dark" %>
+<%= link_to 'Back', menus_path, class:"btn btn-dark" %>

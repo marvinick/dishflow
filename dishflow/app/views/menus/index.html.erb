@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-7">
+    <p class="menu-main-header mb-3">Menus</p>
+    <p class="menu-paragraph">
+      Part of the magic of iPad is that almost anything can be done with Multi-Touch using simple, intuitive gestures. And now iPadOS makes it easier and faster to select and edit text using just your fingers.
+    </p>
+    <%= link_to 'Create new menu',  new_menu_path, class: "btn btn-dark mb-4" %>
+  </div>
+  <div class="col-5">
+
+  </div>
+  <% @menus.each do |menu| %>
+    <div class="col-md-3">
+      <div class="card p-4">
+        <p class="bold">
+          <%= link_to menu.name, menu_path(menu) %>
+        </p>
+      </div>
+      <br  />
+    </div>
+  <% end %>
+</div>

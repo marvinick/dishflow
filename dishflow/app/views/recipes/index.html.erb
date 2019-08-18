@@ -1,0 +1,23 @@
+<div class="row">
+
+  <div class="col-6">
+    <h4 class="menu-main-header mb-3">Recipes</h4>
+    <%= link_to 'New Recipe', new_recipe_path, class: "btn btn-dark" %>
+  </div>
+
+</div>
+<br />
+<div class="row">
+  <% @recipes.each do |recipe| %>
+    <div class="col-md-3">
+      <%= link_to recipe do %>
+        <div class="recipe-card">
+          <li class="bold list-unstyled"><%= recipe.name %></li>
+          <li class="list-unstyled"><%= recipe.description %></li>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
